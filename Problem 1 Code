@@ -1,0 +1,29 @@
+# Assignment-5 Problem 1
+#This code computes the integral from 1 to 0 of sin^2 (sqrt(100*x)) using the adaptive trapezoidal rule
+
+from math import sin, fabs
+from numpy import zeros
+
+
+
+def f(x): 
+    return (sin((100*x)**(1.0/2.0)))**2
+
+
+a=0.0
+b=1.0
+i=0
+N=1
+s=zeros(100,float)
+
+for i in range (1, 10):
+    h=(b-a)/N
+    s[i]=0.5*f(a)+0.5*f(b)
+    for k in range (1, N):
+        s[i]+=f(a+k*h)
+        k+=1
+    error=(1.0/3.0)*fabs(s[i-1]-s[i])
+    print 'Number of steps: ' ,N, 'Value of Integral: ' ,s[i], 'Error: ' ,error
+    N=2**i
+    i+=1
+
