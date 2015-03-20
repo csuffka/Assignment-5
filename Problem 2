@@ -1,0 +1,53 @@
+# Assignment-5 Problem 2
+#This code calculates and graphs a user-inputed integral
+
+
+from math import tanh
+from numpy import zeros, linspace
+from pylab import plot, show, xlabel, ylabel, xlim, ylim, title
+
+def f(x):
+    return (1.0+1.0*tanh(2.0*x))
+
+def g(x):
+    return (1.0-(tanh(x))**2.0)
+    
+x=linspace(-2, 2, 400)
+
+#My numerical result using g(x)
+v=zeros(400, float)
+m=0.0
+
+#Computer's analytical result
+y=zeros(400, float)
+n=0.0
+h=0.01
+
+#My numerical result using g(x)
+j=-2.0
+for i in range (0,400):
+    v[m]=g(j)
+    m+=1
+    j+=.01
+    i+=1
+    
+#Computer's analytical result
+y[n]=(f(-2.0))
+n=1.0
+p=-2.0
+for k in range (0, 399):
+    y[n]=(f(p+(h/2)) -f(p-(h/2)))/h
+    p+=0.01
+    n+=1
+    k+=1
+    
+    
+plot(x,y, "b-")
+plot(x,v, "r--")
+xlabel('Inputted x values')
+ylabel('Outputted derivative values')
+show()
+    
+    
+    
+    
